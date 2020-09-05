@@ -1,6 +1,6 @@
 # 쿠버네티스 구조
 
-![구조도]()
+![구조도](https://github.com/mychum1/programmingPerDay365/blob/master/images/FFCAF4D2-D177-4998-A09E-20B9DB444760.jpeg)
 
 ## 쿠버네티스를 써야만 하는 이유
 
