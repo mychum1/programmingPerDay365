@@ -57,3 +57,42 @@ INSTALL_K3S_VERSION=“v1.17.4+k3s1” sh -s -
 	A. kubectl label node {node 이름} {라벨 이름}
 		ex)kubectl label node master color-red
 		확인 ) kubectl get node master -o yaml
+12. 모든 리소스 조회
+	A. kubectl api-resources
+13. 모든 서비스 조회
+	A. kubectl services
+14. 앱정의서의 내용 조회
+	A. kubectl get pod {pod name} -o jsonpath=“{~~~}”
+		jsonpath ex. .spec.containers[0].image
+		// spec의 0번째 컨테이너의 이미지 출력
+15. 자동완성기능 사용
+	A. echo “source <(kubectl completion bash)” >> ~/.bashrc
+	B. source ~/.bashrc
+16. 사용자 인증파일 조회
+	A. kubectl config view
+17. 클러스터 정보 조회
+	A. kubectl cluster-info
+
+## Pod 에 대하여
+쿠버네티스의 최소 단위이다.
+	1. 한 개 이상의 컨테이너를 실행한다.
+	2. IP를 공유한다. node ip != pod ip, pod ip = container ip
+	3. 동일 노드에 할당된다.
+![파드 이미지](https://github.com/mychum1/programmingPerDay365/blob/master/images/AF496B42-3CA1-4C2F-A942-A24100AC751A.jpeg)
+
+## 앱정의서(선언형 명령어)에 대하여
+1. apiVersion : scope. (자바의 패키지같은 존재)
+2. kind : 리소스 타입(자바의 클래스같은 존재)
+3. metadata : 메타정보
+	3_1 labels : key:value 로 이루어진 라벨 정보
+	3_2 name : 리소스의 이름.
+4. spec : 리소스 정의
+	4_1 containers : 컨테이너 정의 
+		4_1_1 name: 컨테이너 이름
+		4_1_2 image : 컨테이너 이미지 
+로 작성 후,
+kubectl apply -f 앱정의서yaml
+
+## 즉석해서 리소스를 생성하기
+cat << EOF | kubectl apply -f -
+를 사용하면 car redirection을 이용해서 즉석으로 yaml 파일을 만들어줌. (포맷)
