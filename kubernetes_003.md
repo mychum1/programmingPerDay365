@@ -96,3 +96,20 @@ kubectl apply -f 앱정의서yaml
 ## 즉석해서 리소스를 생성하기
 cat << EOF | kubectl apply -f -
 를 사용하면 car redirection을 이용해서 즉석으로 yaml 파일을 만들어줌. (포맷)
+
+## 라벨링 시스템
+### Pod 에 라벨링하기.
+1. kubectl get pod -L {label key} //어떤 라벨의 pod가 동작하고 있는지 확인
+2. kubectl get pod {pod name} —show-labels //pod 들의 라벨들을 확인
+3. kubectl get pod -l {label key}
+4. kubectl get pod -l {label key}={label value}
+
+### nodeSelector 로 셀렉하기
+앱정의서에 nodeSelector 설정 //특정 라벨의 노드에 반영되길 원할 때 사용
+
+## Volume 리소스 연결
+1. host local volume 을 연결하기 
+1.1 앱 정의서에 volumes, volumesMounts 추가하기
+* volumes : 로컬의 디렉토리 위치 지정
+* volumesMounts : 컨테이너 내부의 디렉토리 위치 지정
+1.2 kubectl apply -f {앱 정의서}
