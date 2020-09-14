@@ -113,3 +113,28 @@ cat << EOF | kubectl apply -f -
 * volumes : 로컬의 디렉토리 위치 지정
 * volumesMounts : 컨테이너 내부의 디렉토리 위치 지정
 1.2 kubectl apply -f {앱 정의서}
+
+## Pod 에 정보 전달하기
+앱 정의서에 : 
+1. command : 명령어를 전달 [“echo”]
+2. args: : 매개 변수 전달 [“abc”,”def”]
+3. env : 환경변수 설정 -name : , value
+4. 명령어 create.
+    1. Kubectl create <Resource>
+5. Kubectl create configmap <name> <data-source> : configmap 생성
+6. env의 valueFrom 프로퍼티
+    1. configMapKeyRef : 생성한 configmap를 참조하겠다.
+        1. name
+        2. value
+7. envFrom : configmap 전체를 참조한다.
+8. volumeMounts : 파일 시스템 참조
+9. volumes 
+    1. configMap : 파일 시스템으로 참조
+    2. configMap : 파일시스템으로 참조
+10. Kubectl create configmap {config file name} —from-file={참조할 파일 명}
+
+## 리소스 관리
+앱 정의서에 :
+1. Resources
+    1. requests: 컨테이너가 사용할 최소 리소스 양 요청(cpu, memory 등등의 리소스를 얼만큼 사용할건지 정의)
+    2. limits
